@@ -1,0 +1,10 @@
+.example-card {
+  width: 400px;
+}
+
+.example-edit{
+  display: flex;
+}
+.example-edit.mat-icon{
+  justify-content: flex-end;
+}
