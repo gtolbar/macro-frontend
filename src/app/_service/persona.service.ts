@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Alimento } from '../_model/alimento';
 import { Persona } from '../_model/persona';
 import { GenericService } from './generic.service';
 
@@ -9,6 +9,9 @@ import { GenericService } from './generic.service';
   providedIn: 'root'
 })
 export class PersonaService extends GenericService<Persona>{
+
+  private personaCambio = new Subject<Persona[]>();
+  private mensajeCambio = new Subject<String>();
 
   constructor(
     protected http:HttpClient
@@ -18,4 +21,24 @@ export class PersonaService extends GenericService<Persona>{
       `${environment.HOST}/personas`
     );
   }
+
+
+     //get Subjects
+     getPersonaCambio() {
+      return this.personaCambio.asObservable();
+    }
+
+    getMensajeCambio() {
+      return this.mensajeCambio.asObservable();
+    }
+
+    //set Subjects
+    setPersonaCambio(persona: Persona[]) {
+      this.personaCambio.next(persona);
+    }
+
+    setMensajeCambio(mensaje: string) {
+      this.mensajeCambio.next(mensaje);
+    }
+
 }

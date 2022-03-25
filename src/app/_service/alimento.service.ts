@@ -24,7 +24,7 @@ export class AlimentoService extends GenericService<Alimento>{
   }
 
      //get Subjects
-     getExamenCambio() {
+     getAlimentoCambio() {
       return this.alimentoCambio.asObservable();
     }
 
@@ -33,8 +33,8 @@ export class AlimentoService extends GenericService<Alimento>{
     }
 
     //set Subjects
-    setExamenCambio(examenes: Alimento[]) {
-      this.alimentoCambio.next(examenes);
+    setAlimentoCambio(alimento: Alimento[]) {
+      this.alimentoCambio.next(alimento);
     }
 
     setMensajeCambio(mensaje: string) {

@@ -23,6 +23,8 @@ import { PeriodoComponent } from './pages/periodo/periodo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonaEdicionComponent } from './pages/persona/persona-edicion/persona-edicion.component';
 import { AlimentoEdicionComponent } from './pages/alimento/alimento-edicion/alimento-edicion.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -49,7 +51,9 @@ import { AlimentoEdicionComponent } from './pages/alimento/alimento-edicion/alim
     MatDialogModule,
     MatInputModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
 
   ],
   providers: [],

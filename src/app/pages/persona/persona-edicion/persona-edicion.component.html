@@ -1,36 +1,61 @@
-<p>
-  <mat-form-field appearance="outline">
-  <mat-label>Outline form field</mat-label>
-  <input matInput placeholder="Placeholder">
-  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  <mat-hint>Hint</mat-hint>
+<!-- No olvidar agregar ReactiveFormsModule en App.module.ts, util para trabajar con formularios-->
+
+<div class="box">
+  <div mat-card-avatar style="
+  background-image: url('{{persona.fotoUrl}}');
+  background-size: cover;">
+      <button mat-mini-fab color="accent" type="button" onclick="document.getElementById('uploadFile').click()">
+        <mat-icon>upload</mat-icon>
+      </button>
+      <input type="file" hidden="true" id="uploadFile" (change)="seleccionarArchivo($event)">
+  </div>
+</div>
+
+<form class="example-container" [formGroup]="form" #frmAlimento="ngForm" (ngSubmit)="operar()">
+
+  <div [hidden]="true">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="ID" required formControlName="id">
+      </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width"  appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput minlength="3" required formControlName="nombre">
   </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="outline">
-  <mat-label>Outline form field</mat-label>
-  <input matInput placeholder="Placeholder">
-  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  <mat-hint>Hint</mat-hint>
+
+  <mat-form-field class="example-full-width"  appearance="outline">
+    <mat-label>Edad</mat-label>
+    <input matInput required formControlName="edad" type="number">
   </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="outline">
-  <mat-label>Outline form field</mat-label>
-  <input matInput placeholder="Placeholder">
-  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  <mat-hint>Hint</mat-hint>
+
+  <mat-form-field class="example-full-width"  appearance="outline">
+      <mat-label>Altura</mat-label>
+      <input matInput required formControlName="altura" type="number">
   </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="outline">
-  <mat-label>Outline form field</mat-label>
-  <input matInput placeholder="Placeholder">
-  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  <mat-hint>Hint</mat-hint>
+
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Peso</mat-label>
+    <input matInput required formControlName="peso" type="number">
   </mat-form-field>
-</p>
-<p>
-  <button mat-raised-button color="primary" (click)="cancelar()">Aceptar</button>
-  <button mat-raised-button color="warn" (click)="aceptar()">Cancelar</button>
-</p>
+
+  <div [hidden]="true">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="FotoURL" required formControlName="fotoUrl">
+    </mat-form-field>
+</div>
+<div [hidden]="true">
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="idUsuario" required formControlName="idUsuario">
+  </mat-form-field>
+</div>
+<div [hidden]="true">
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="idPeriodo" required formControlName="idPeriodo">
+  </mat-form-field>
+</div>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="frmAlimento.invalid" style="margin-bottom: 10px;">Aceptar</button>
+  <button mat-raised-button color="accent" type="button" (click)="cancelar()">Cancelar</button>
+
+</form>

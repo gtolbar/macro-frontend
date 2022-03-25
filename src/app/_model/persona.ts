@@ -4,6 +4,7 @@ export class Persona{
   edad:number;
   altura:number;
   peso:number;
+  fotoUrl:string;
   idUsuario:number;
   idPeriodo:number;
 }

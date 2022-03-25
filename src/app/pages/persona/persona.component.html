@@ -1,35 +1,33 @@
-<p>
-  <mat-card class="example-card">
-    <mat-card-subtitle>Nombres</mat-card-subtitle>
-    <mat-card-content>
-      <p>Prueba pepito</p>
-    </mat-card-content>
-  </mat-card>
-</p>
-<p>
-  <mat-card class="example-card">
-    <mat-card-subtitle>Edad</mat-card-subtitle>
-    <mat-card-content>
-      <p>Prueba 16 años</p>
-    </mat-card-content>
-  </mat-card>
-</p>
-<p>
-  <mat-card class="example-card">
-    <mat-card-subtitle>Altura</mat-card-subtitle>
-    <mat-card-content>
-      <p>Prueba 1.70m</p>
-    </mat-card-content>
-  </mat-card>
-</p>
-<p>
-  <mat-card class="example-card">
-    <mat-card-subtitle>Peso</mat-card-subtitle>
-    <mat-card-content>
-      <p>Prueba 56kg</p>
-    </mat-card-content>
-  </mat-card>
-</p>
-
-  <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
-  <button mat-raised-button color="accent" (click)="editarPersona()">Editar</button>
+<div class="example-container" >
+  <div class="box">
+    <div mat-card-avatar style="
+    background-image: url('{{persona.fotoUrl}}');
+    background-size: cover;">
+    </div>
+  </div>
+  <p>
+    <mat-card class="example-card">
+      <mat-card-subtitle>Nombre</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{persona.nombre}}</p>
+      </mat-card-content>
+      <mat-card-subtitle>Edad</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{persona.edad}}</p>
+      </mat-card-content>
+      <mat-card-subtitle>Altura</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{persona.altura}} m</p>
+      </mat-card-content>
+      <mat-card-subtitle>Peso</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{persona.peso}}</p>
+      </mat-card-content>
+    </mat-card>
+  </p>
+   <mat-divider></mat-divider>
+    <button mat-raised-button color="primary" (click)="aceptar()" style="margin-bottom: 10px;">Aceptar</button>
+    <mat-divider></mat-divider>
+    <button mat-raised-button color="accent" (click)="editarPersona()">Editar</button>
+    <mat-divider></mat-divider>
+</div>

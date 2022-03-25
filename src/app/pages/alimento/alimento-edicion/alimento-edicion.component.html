@@ -1,5 +1,29 @@
+<!-- No olvidar agregar ReactiveFormsModule en App.module.ts, util para trabajar con formularios-->
+<form class="example-container" [formGroup]="form" #frmAlimento="ngForm" (ngSubmit)="operar()">
 
-<p>
-<button mat-raised-button color="primary" (click)="cancelar()">Aceptar</button>
-<button mat-raised-button color="warn" (click)="aceptar()">Cancelar</button>
-</p>
+  <div [hidden]="true">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="ID" required formControlName="id">
+      </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width"  appearance="outline">
+      <input matInput placeholder="Nombre" minlength="3" required formControlName="nombre">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width"  appearance="outline">
+      <input matInput placeholder="Proteina" required formControlName="proteina" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width"  appearance="outline">
+      <input matInput placeholder="Carbohidrato" required formControlName="carbohidrato" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="outline">
+      <input matInput placeholder="Grasa" required formControlName="grasa" type="number">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="frmAlimento.invalid">Aceptar</button>
+  <button mat-raised-button color="accent" type="button"(click)="cancelar()">Cancelar</button>
+
+</form>
