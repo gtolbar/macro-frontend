@@ -19,7 +19,7 @@ export class AlimentoComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator:MatPaginator;
   dataSource:MatTableDataSource<AlimentoDTO>;
-  displayedColumns: string[] = ['nombre', 'proteina', 'carbohidrato', 'grasa','caloria','cantidad', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'proteina', 'carbohidrato', 'grasa','cantidad','caloria', 'acciones'];
 
   constructor(
     private alimentoService:AlimentoService,
