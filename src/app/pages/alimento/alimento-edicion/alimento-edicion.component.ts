@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Alimento } from 'src/app/_model/alimento';
 import { AlimentoService } from 'src/app/_service/alimento.service';
+import { ConsultaAlimentoService } from 'src/app/_service/consultaAlimento.service';
 
 @Component({
   selector: 'app-alimento-edicion',
@@ -19,7 +20,9 @@ export class AlimentoEdicionComponent implements OnInit {
   constructor(
   @Inject(MAT_DIALOG_DATA) private data: Alimento,
   private dialogRef: MatDialogRef<AlimentoEdicionComponent>,
-  private alimentoService:AlimentoService
+  private alimentoService:AlimentoService,
+  private consultaAlimentoService:ConsultaAlimentoService
+
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +31,8 @@ export class AlimentoEdicionComponent implements OnInit {
     'nombre':new FormControl(''),
     'proteina':new FormControl(''),
     'carbohidrato':new FormControl(''),
-    'grasa':new FormControl('')
+    'grasa':new FormControl(''),
+    'cantidad':new FormControl('')
    });
 
    if (this.data!==null) {
@@ -45,7 +49,8 @@ export class AlimentoEdicionComponent implements OnInit {
         'nombre':new FormControl(data.nombre),
         'proteina':new FormControl(data.proteina),
         'carbohidrato':new FormControl(data.carbohidrato),
-        'grasa':new FormControl(data.grasa)
+        'grasa':new FormControl(data.grasa),
+        'cantidad':new FormControl(data.cantidad)
        });
     });
   }
@@ -57,19 +62,20 @@ export class AlimentoEdicionComponent implements OnInit {
     formData.proteina = this.form.value['proteina'];
     formData.carbohidrato = this.form.value['carbohidrato'];
     formData.grasa = this.form.value['grasa'];
+    formData.cantidad = this.form.value['cantidad'];
 
     if (this.data!==null) {
       this.alimentoService.modificar(formData).subscribe(()=>{
-        this.alimentoService.listar().subscribe(data=>{
-          this.alimentoService.setAlimentoCambio(data);
-          this.alimentoService.setMensajeCambio("SE EDITO CON EXITO");
+        this.consultaAlimentoService.consultaAlimentos().subscribe(data=>{
+          this.consultaAlimentoService.setConsultaAlimentoCambio(data);
+          this.consultaAlimentoService.setMensajeCambio("SE EDITO CON EXITO");
         });
       });
     }else{
       this.alimentoService.registrar(formData).subscribe(()=>{
-        this.alimentoService.listar().subscribe(data=>{
-          this.alimentoService.setAlimentoCambio(data);
-          this.alimentoService.setMensajeCambio("SE REGISTRO CON EXITO");
+        this.consultaAlimentoService.consultaAlimentos().subscribe(data=>{
+          this.consultaAlimentoService.setConsultaAlimentoCambio(data);
+          this.consultaAlimentoService.setMensajeCambio("SE REGISTRO CON EXITO");
         });
       });
     }

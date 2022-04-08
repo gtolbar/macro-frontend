@@ -27,6 +27,16 @@
     <td mat-cell *matCellDef="let element"> {{element.grasa}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="cantidad">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+    <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="caloria">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Calorias </th>
+    <td mat-cell *matCellDef="let element"> {{element.caloria}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="acciones">
     <th mat-header-cell *matHeaderCellDef > Acciones </th>
     <td mat-cell *matCellDef="let element">

@@ -7,6 +7,8 @@ import { AlimentoEdicionComponent } from './alimento-edicion/alimento-edicion.co
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { AlimentoDTO } from 'src/app/_dto/alimentoDTO';
+import { ConsultaAlimentoService } from 'src/app/_service/consultaAlimento.service';
 
 @Component({
   selector: 'app-alimento',
@@ -16,21 +18,23 @@ import { MatPaginator } from '@angular/material/paginator';
 export class AlimentoComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator:MatPaginator;
-  dataSource:MatTableDataSource<Alimento>;
-  displayedColumns: string[] = ['nombre', 'proteina', 'carbohidrato', 'grasa', 'acciones'];
+  dataSource:MatTableDataSource<AlimentoDTO>;
+  displayedColumns: string[] = ['nombre', 'proteina', 'carbohidrato', 'grasa','caloria','cantidad', 'acciones'];
 
   constructor(
     private alimentoService:AlimentoService,
+    private consultaAlimentoService:ConsultaAlimentoService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.alimentoService.listar().subscribe(data=>{
+
+    this.consultaAlimentoService.consultaAlimentos().subscribe(data=>{
       this.crearTabla(data);
     });
 
-    this.alimentoService.getAlimentoCambio().subscribe(data=>{
+    this.consultaAlimentoService.getConsultaAlimentoCambio().subscribe(data=>{
       this.crearTabla(data);
 
     });
@@ -44,7 +48,7 @@ export class AlimentoComponent implements OnInit {
     });
   }
 
-  crearTabla(data: Alimento[]){
+  crearTabla(data: AlimentoDTO[]){
     this.dataSource= new MatTableDataSource(data);
     this.dataSource.paginator=this.paginator;
     this.dataSource.sort=this.sort;
@@ -62,8 +66,8 @@ export class AlimentoComponent implements OnInit {
 
   eliminarElemento(id: number){
     this.alimentoService.eliminar(id).subscribe(()=>{
-      this.alimentoService.listar().subscribe(data=>{
-        this.alimentoService.setAlimentoCambio(data);
+      this.consultaAlimentoService.consultaAlimentos().subscribe(data=>{
+        this.consultaAlimentoService.setConsultaAlimentoCambio(data);
         this.alimentoService.setMensajeCambio("SE ELIMINO CON EXITO");
       });
     });

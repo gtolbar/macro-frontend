@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Alimento } from '../_model/alimento';
 import { GenericService } from './generic.service';
 import { Subject } from 'rxjs';
+import {AlimentoDTO} from '../_dto/alimentoDTO';
 
 @Injectable({
   providedIn: 'root'
